@@ -70,25 +70,41 @@
       <div class="column is-one-half">
         <div class="buffer"></div>
         <canvas id="bubble-chart"></canvas>
+
+        <select id="axis-one">
+          <option value='["Mobile", "Desktop", "App"]'>Device</option>
+          <option value=1>Country</option>
+          <option value=2>Format</option>
+        </select>
+
+        <b>VS.</b>
+
+        <select id="axis-two">
+          <option value='["Mobile", "Desktop", "App"]'>Device</option>
+          <option value=1>Country</option>
+          <option value=2>Format</option>
+        </select>
+
         <script type="text/javascript">
           var ctx = document.getElementById("bubble-chart");
 
-          var devices = ["Mobile", "Desktop", "App"];
+          const device_axis = ["Mobile", "Desktop", "App"];
+          const country_axis = ["NA", "EU", "AS"];
+          const format_axis = ["Video", "Banner"];
+
+          // devices.map(x => 
+          //         sum(agg_data[0].filter(d => d["platform"] == x.toLowerCase()).map(p => p.impressions))
+          //       )
+
+          data_set = [];
 
           var data = {
-            labels: devices,
 
-            datasets: [
-              {
-                data: devices.map(x => 
-                  sum(agg_data[0].filter(d => d["platform"] == x.toLowerCase()).map(p => p.impressions))
-                ),
-                backgroundColor: [
-                  colour.green,
-                  colour.blue,
-                  colour.yellow
-                ],
-              }]
+            datasets: [{
+              label: "Impressions",
+              data: data_set,
+              backgroundColor: colour.green,
+            }]
           };
 
           var pieChart = new Chart(ctx,{
