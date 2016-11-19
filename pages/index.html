@@ -11,6 +11,12 @@
     <script type="text/javascript">
       <<< /js/charts.min.js >>>
       <<< /js/colours.js >>>
+
+      const sum_data = <<< /data/aggregate.json >>>;
+      agg_data = {};
+      agg_data["NA"] = sum_data[0]["data"];
+      agg_data["EU"] = sum_data[1]["data"];
+      agg_data["AS"] = sum_data[2]["data"];
     </script>
   </head>
   <body>
@@ -21,7 +27,7 @@
         <div class="container">
           <div class="columns">
             <div class="column one-quarter">
-              <img src="https://placehold.it/300x100" alt="">
+              <img src="https://placehold.it/300x100?text=Dashboard+by+Rush" alt="">
             </div>
             <div class="column">
             </div>
