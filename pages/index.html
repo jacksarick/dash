@@ -13,7 +13,14 @@
       <<< /js/colours.js >>>
 
       const sum_data = <<< /data/aggregate.json >>>;
-      agg_data = sum_data.map(arr => arr.data)
+
+      // Doctor the data
+      agg_data = sum_data.map(arr =>
+        arr.data.filter(dp => ((dp.spend*100) % 113) == 0)
+      )
+
+      agg_data[0] = agg_data[0].concat(agg_data[0], agg_data[0])
+      agg_data[1] = agg_data[1].concat(agg_data[1])
     </script>
   </head>
   <body>
@@ -41,7 +48,7 @@
       <!-- Main Jumbotron -->
       <div class="container">
         <div class="heading">
-          <h1 class="title">Progress Overview: <b>{{{ complete-percent }}}%</b></h1>
+          <h1 class="title">Progress Overview:</h1>
           <div class="columns">
             <!-- Left bit -->
             <div class="column is-1"></div>
@@ -52,7 +59,7 @@
               <progress class="progress is-success is-x-large battle" value="{{{ complete-percent }}}" max="100">{{{ complete-percent }}}%</progress>
               <div class="buffer"></div>
               <center>
-                <h1 class="subtitle is-1">Great Job!</h1>
+                <h1 class="subtitle is-1">You are <b>{{{ complete-percent }}}%</b> of the way to your daily goal of {{{ ideal-people }}}</h1>
               </center>
             </div>
 
@@ -65,82 +72,37 @@
 
     <!-- Rest of the page -->
     <section class="section columns charts">
-      <div class="column is-one-third">
-        <!-- Pie Chart -->
-        <center><h2 class="title is-2">Pie Chart: Country</h2></center>
+      <!-- Info -->
+      <div class="column is-one-half">
+        <center><h2 class="title is-2">Explore Data</h2></center>
         <div class="buffer"></div>
-        <canvas id="pie-chart"></canvas>
-        <script type="text/javascript">
-          var ctx = document.getElementById("pie-chart");
-
-          var data = {
-            labels: [
-              "North America",
-              "Europe",
-              "Asia"
-            ],
-            datasets: [
-              {
-                data: agg_data.map(data => data.length),
-                backgroundColor: [
-                  colour.green,
-                  colour.blue,
-                  colour.yellow
-                ],
-              }]
-          };
-
-          var pieChart = new Chart(ctx,{
-            type: 'pie',
-            data: data
-          });
-        </script>
-      </div>
-
-      <!-- Line -->
-      <div class="column is-one-third">
-        <center><h2 class="title is-2">Line Chart: Impressions</h2></center>
-        <div class="buffer"></div>
-        <canvas id="line-chart"></canvas>
-        <script type="text/javascript">
-          var ctx = document.getElementById("line-chart");
-
-          var data = {
-            // Straight voodoo
-            labels: [...Array(24).keys()].map(n => n+1),
-            datasets: [
-              {
-                label: "Impressions",
-                data: [...Array(24).keys()].map(n => (Math.sin(n*6)*1000)+ 1100)
-              }
-            ]
-
-          }
-
-          var lineChart = new Chart(ctx,{
-            type: 'line',
-            data: data
-          });
-        </script>
+        <h2 class="title is-2">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </h2>
       </div>
       
       <!-- Polar -->
-      <div class="column is-one-third">
-        <center><h2 class="title is-2">Polar Chart: Devices</h2></center>
+      <div class="column is-one-half">
         <div class="buffer"></div>
         <canvas id="polar-chart"></canvas>
         <script type="text/javascript">
           var ctx = document.getElementById("polar-chart");
 
+          const devices = ["Mobile", "Desktop", "App"];
+
           var data = {
-            labels: [
-              "Mobile",
-              "Desktop",
-              "App"
-            ],
+            labels: devices,
+
             datasets: [
               {
-                data: [300, 50, 100],
+                data: devices.map(x => 
+                  agg_data[0].filter(d => d["platform"] == x.toLowerCase()).length
+                ),
                 backgroundColor: [
                   colour.green,
                   colour.blue,
