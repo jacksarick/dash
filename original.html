@@ -1,0 +1,94 @@
+<section class="section columns charts">
+     <!-- Pie Chart -->
+      <div class="column is-one-third">
+        <center><h2 class="title is-2">Pie Chart: Country</h2></center>
+        <div class="buffer"></div>
+        <canvas id="pie-chart"></canvas>
+        <script type="text/javascript">
+          var ctx = document.getElementById("pie-chart");
+
+          var data = {
+            labels: [
+              "North America",
+              "Europe",
+              "Asia"
+            ],
+            datasets: [
+              {
+                data: agg_data.map(data => data.length),
+                backgroundColor: [
+                  colour.green,
+                  colour.blue,
+                  colour.yellow
+                ],
+              }]
+          };
+
+          var pieChart = new Chart(ctx,{
+            type: 'pie',
+            data: data
+          });
+        </script>
+      </div>
+
+      <!-- Line -->
+      <div class="column is-one-third">
+        <center><h2 class="title is-2">Line Chart: Impressions</h2></center>
+        <div class="buffer"></div>
+        <canvas id="line-chart"></canvas>
+        <script type="text/javascript">
+          var ctx = document.getElementById("line-chart");
+
+          var data = {
+            // Straight voodoo
+            labels: [...Array(24).keys()].map(n => n+1),
+            datasets: [
+              {
+                label: "Impressions",
+                data: [...Array(24).keys()].map(n => (Math.sin(n*6)*1000)+ 1100)
+              }
+            ]
+
+          }
+
+          var lineChart = new Chart(ctx,{
+            type: 'line',
+            data: data
+          });
+        </script>
+      </div>
+      
+      <!-- Polar -->
+      <div class="column is-one-third">
+        <center><h2 class="title is-2">Polar Chart: Devices</h2></center>
+        North America
+        <div class="buffer"></div>
+        <canvas id="polar-chart"></canvas>
+        <script type="text/javascript">
+          var ctx = document.getElementById("polar-chart");
+
+          const devices = ["Mobile", "Desktop", "App"];
+
+          var data = {
+            labels: devices,
+
+            datasets: [
+              {
+                data: devices.map(x => 
+                  agg_data[0].filter(d => d["platform"] == x.toLowerCase()).length
+                ),
+                backgroundColor: [
+                  colour.green,
+                  colour.blue,
+                  colour.yellow
+                ],
+              }]
+          };
+
+          var pieChart = new Chart(ctx,{
+            type: 'polarArea',
+            data: data
+          });
+        </script>
+      </div>
+    </section>
