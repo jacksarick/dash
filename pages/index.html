@@ -100,58 +100,51 @@
         <canvas id="bubble-chart"></canvas>
 
         <select id="axis-one">
-          <option value='device'>Device</option>
+          <option value='["mobile", "desktop", "app"]'>Device</option>
           <option value='["NA", "EU", "AS"]'>Country</option>
-          <option value='["Video", "Banner"]'>Format</option>
+          <option value='["video", "banner"]'>Format</option>
         </select>
 
         <b>VS.</b>
 
         <select id="axis-two">
-          <option value='device'>Device</option>
+          <option value='["mobile", "desktop", "app"]'>Device</option>
           <option value='["NA", "EU", "AS"]'>Country</option>
-          <option value='["Video", "Banner"]'>Format</option>
+          <option value='["video", "banner"]'>Format</option>
         </select>
 
         <script type="text/javascript">
-          var ctx = document.getElementById("bubble-chart");
+          draw_bubble_chart = () => {
+            var ctx = document.getElementById("bubble-chart");
+            const axis_one = JSON.parse($("#axis-one").value())
+            const axis_two = JSON.parse($("#axis-two").value())
 
-          // const device_axis = ["Mobile", "Desktop", "App"];
-          
-          // const format_axis = ["Video", "Banner"];
+            data_set = []
 
-          // devices.map(x => 
-          //         sum(agg_data[0].filter(d => d["platform"] == x.toLowerCase()).map(p => p.impressions))
-          //       )
-
-          const axis_one = JSON.parse($("#axis-one").value())
-          const axis_two = JSON.parse($("#axis-two").value())
-
-          data_set = []
-
-          for (var i = axis_one.length - 1; i >= 0; i--) {
-            for (var n = axis_two.length - 1; n >= 0; n--) {
-              data_set.push({
-                x: i,
-                y: n,
-                r: country_data.filter(p => p[])
-              })
+            for (var i = axis_one.length - 1; i >= 0; i--) {
+              for (var n = axis_two.length - 1; n >= 0; n--) {
+                data_set.push({
+                  x: i,
+                  y: n,
+                  r: impression_count(axis_one[i], axis_two[n])/1000000
+                })
+              }
             }
+
+            var data = {
+
+              datasets: [{
+                label: "Impressions",
+                data: data_set,
+                backgroundColor: colour.green,
+              }]
+            };
+
+            var bubbleChart = new Chart(ctx,{
+              type: 'bubble',
+              data: data
+            });
           }
-
-          var data = {
-
-            datasets: [{
-              label: "Impressions",
-              data: data_set,
-              backgroundColor: colour.green,
-            }]
-          };
-
-          var pieChart = new Chart(ctx,{
-            type: 'bubble',
-            data: data
-          });
         </script>
       </div>
     </section>
@@ -162,6 +155,8 @@
 
         updateUserCount()
         optimalAd()
+        draw_bubble_chart()
+
         $("#progress").value(percent)
         $("#progress").html(percent + "%")
         $("#percentage").html(percent + "%")
@@ -170,6 +165,8 @@
       $("#country-select").listen("change", updateUserCount);
       $("#device-select").listen("change", updateUserCount);
       $("#format-select").listen("change", updateUserCount);
+      $("#axis-one").listen("change", draw_bubble_chart);
+      $("#axis-two").listen("change", draw_bubble_chart);
 
       function updateUserCount() {
         $("#user-count").html(sum(agg_data[$("#country-select").value()]
