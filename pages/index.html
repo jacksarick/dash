@@ -11,16 +11,20 @@
     <script type="text/javascript">
       <<< /js/charts.min.js >>>
       <<< /js/colours.js >>>
+      <<< /js/jackQuery.js >>>
 
       const sum_data = <<< /data/aggregate.json >>>;
 
+      const country_names = ["North America", "Europe", "Asia"]
+
       // Doctor the data
       agg_data = sum_data.map(arr =>
-        arr.data.filter(dp => ((dp.spend*100) % 113) == 0)
+        arr.data.filter(dp => ((dp.spend*100) % 2) == 0)
       )
 
-      agg_data[0] = agg_data[0].concat(agg_data[0], agg_data[0])
-      agg_data[1] = agg_data[1].concat(agg_data[1])
+      agg_data[0] = agg_data[0].concat(agg_data[0], agg_data[0], agg_data[0], agg_data[0], agg_data[0], agg_data[0])
+      agg_data[1] = agg_data[1].concat(agg_data[1], agg_data[1])
+      agg_data[2] = agg_data[2].concat(agg_data[2])
     </script>
   </head>
   <body>
@@ -31,40 +35,13 @@
         <div class="container">
           <div class="columns">
             <div class="column one-quarter">
-              <img src="https://placehold.it/300x100?text=Dashboard+by+Rush" alt="">
+              <img src="https://placehold.it/400x100?text=Playground+by+Rush" alt="">
             </div>
             <div class="column">
             </div>
             <div class="column is-1">
-             <a class="button is-info is-outlined">Account</a>
+             <a class="button is-info is-outlined is-large">Account</a>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Jumbotron -->
-    <section class="section is-medium">
-      <!-- Main Jumbotron -->
-      <div class="container">
-        <div class="heading">
-          <h1 class="title">Progress Overview:</h1>
-          <div class="columns">
-            <!-- Left bit -->
-            <div class="column is-1"></div>
-
-            <!-- Middle bit -->
-            <div class="column">
-              <div class="buffer"></div>
-              <progress class="progress is-success is-x-large battle" value="{{{ complete-percent }}}" max="100">{{{ complete-percent }}}%</progress>
-              <div class="buffer"></div>
-              <center>
-                <h1 class="subtitle is-1">You are <b>{{{ complete-percent }}}%</b> of the way to your daily goal of {{{ ideal-impressions }}}</h1>
-              </center>
-            </div>
-
-            <!-- Right bit -->
-            <div class="column is-1"></div>
           </div>
         </div>
       </div>
@@ -74,16 +51,21 @@
     <section class="section columns charts">
       <!-- Info -->
       <div class="column is-one-half">
-        <center><h2 class="title is-2">Explore Data</h2></center>
+        <center><h1 class="title is-1">Explore Our Data</h1></center>
         <div class="buffer"></div>
         <h2 class="title is-2">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <b id="user-count">XXX</b> people from <<< /options/country.html >>> saw a <<< /options/format.html >>> ad on a <<< /options/device.html >>>
         </h2>
+
+        <h2 class="title is-2">
+          Our data shows the most effective vector was <b id="device-auto">XXX</b> <b id="format-auto">XXX</b> ads in <b id="country-auto">XXX</b>, as it was seen by <b id="user-count-auto">XXX</b> people
+        </h2>
+
+        <div class="buffer"></div>
+
+        <h3 class="title is-3">
+          Let us help you launch the most effective ad campaign you possibly can. You'll save money, reach a more valuable audience, and we'll always break it down to plain english for you.
+        </h3>
       </div>
       
       <!-- Polar -->
@@ -93,7 +75,7 @@
         <script type="text/javascript">
           var ctx = document.getElementById("polar-chart");
 
-          const devices = ["Mobile", "Desktop", "App"];
+          var devices = ["Mobile", "Desktop", "App"];
 
           var data = {
             labels: devices,
@@ -118,5 +100,58 @@
         </script>
       </div>
     </section>
+
+    <script type="text/javascript">
+      window.onload = function() {
+        percent = Math.floor((agg_data.map(f => f.length).reduce((a, b) => a + b, 0) / {{{ ideal-impressions }}}) * 100)
+
+        updateUserCount()
+        optimalAd()
+        $("#progress").value(percent)
+        $("#progress").html(percent + "%")
+        $("#percentage").html(percent + "%")
+      }
+
+      $("#country-select").listen("change", updateUserCount);
+      $("#device-select").listen("change", updateUserCount);
+      $("#format-select").listen("change", updateUserCount);
+
+      function updateUserCount() {
+        $("#user-count").html(agg_data[$("#country-select").value()].filter(dp =>
+          (dp.platform == $("#device-select").value()) &&
+          (dp.format == $("#format-select").value())).length)
+      }
+
+      listify = (l) => Array.apply(null, $(l).$.options).map(f => f.value)
+      function optimalAd() {
+        countries = listify("#country-select")
+        devices = listify("#device-select")
+        formats = listify("#format-select")
+
+        max = 0
+        optimal = []
+
+        // Highly advanced optimization algorithm
+        for (var i = countries.length - 1; i >= 0; i--) {
+          for (var k = devices.length - 1; k >= 0; k--) {
+            for (var n = formats.length - 1; n >= 0; n--) {
+              count = agg_data[countries[i]].filter(dp =>
+                (dp.platform == devices[k]) &&
+                (dp.format == formats[n])).length
+              if (count > max) {
+                max = count
+                optimal = [countries[i], devices[k], formats[n]];
+              }
+            }
+          }
+        }
+
+        $("#country-auto").html(country_names[optimal[0]])
+        $("#device-auto").html(optimal[1])
+        $("#format-auto").html(optimal[2])
+        $("#user-count-auto").html(max)
+
+      }
+    </script>
   </body>
 </html>

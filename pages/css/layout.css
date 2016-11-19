@@ -13,3 +13,15 @@ body {
 .buffer {
 	height: 5vh;
 }
+
+select {
+	all: inherit;
+	display: inline;
+	outline: 2px dotted blue;
+	margin: 8px;
+	padding-right: .5em;
+}
+
+#user-count {
+	outline: 2px dotted red;
+}
