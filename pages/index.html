@@ -19,12 +19,8 @@
 
       // Doctor the data
       agg_data = sum_data.map(arr =>
-        arr.data.filter(dp => ((dp.spend*100) % 2) == 0)
+        arr.data
       )
-
-      agg_data[0] = agg_data[0].concat(agg_data[0], agg_data[0], agg_data[0], agg_data[0], agg_data[0], agg_data[0])
-      agg_data[1] = agg_data[1].concat(agg_data[1], agg_data[1])
-      agg_data[2] = agg_data[2].concat(agg_data[2])
     </script>
   </head>
   <body>
