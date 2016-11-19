@@ -13,10 +13,7 @@
       <<< /js/colours.js >>>
 
       const sum_data = <<< /data/aggregate.json >>>;
-      agg_data = {};
-      agg_data["NA"] = sum_data[0]["data"];
-      agg_data["EU"] = sum_data[1]["data"];
-      agg_data["AS"] = sum_data[2]["data"];
+      agg_data = sum_data.map(arr => arr.data)
     </script>
   </head>
   <body>
@@ -69,6 +66,7 @@
     <!-- Rest of the page -->
     <section class="section columns charts">
       <div class="column is-one-third">
+        <!-- Pie Chart -->
         <center><h2 class="title is-2">Pie Chart: Country</h2></center>
         <div class="buffer"></div>
         <canvas id="pie-chart"></canvas>
@@ -83,7 +81,7 @@
             ],
             datasets: [
               {
-                data: [300, 50, 100],
+                data: agg_data.map(data => data.length),
                 backgroundColor: [
                   colour.green,
                   colour.blue,
@@ -99,6 +97,7 @@
         </script>
       </div>
 
+      <!-- Line -->
       <div class="column is-one-third">
         <center><h2 class="title is-2">Line Chart: Impressions</h2></center>
         <div class="buffer"></div>
@@ -125,6 +124,7 @@
         </script>
       </div>
       
+      <!-- Polar -->
       <div class="column is-one-third">
         <center><h2 class="title is-2">Polar Chart: Devices</h2></center>
         <div class="buffer"></div>
