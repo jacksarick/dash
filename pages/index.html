@@ -62,7 +62,7 @@
     <!-- Rest of the page -->
     <section class="section columns charts">
       <div class="column is-one-third">
-        <center><h2 class="title is-2">Pie Chart</h2></center>
+        <center><h2 class="title is-2">Pie Chart: Country</h2></center>
         <div class="buffer"></div>
         <canvas id="pie-chart"></canvas>
         <script type="text/javascript">
@@ -70,9 +70,9 @@
 
           var data = {
             labels: [
-              "Red",
-              "Blue",
-              "Yellow"
+              "North America",
+              "Europe",
+              "Asia"
             ],
             datasets: [
               {
@@ -95,27 +95,68 @@
             data: data
           });
         </script>
+      </div>
 
-      </div>
       <div class="column is-one-third">
-        <center><h2 class="title is-2">Chart 2</h2></center>
+        <center><h2 class="title is-2">Line Chart: Impressions</h2></center>
         <div class="buffer"></div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <canvas id="line-chart"></canvas>
+        <script type="text/javascript">
+          var ctx = document.getElementById("line-chart");
+
+          var data = {
+            // Straight voodoo
+            labels: [...Array(24).keys()].map(n => n+1),
+            datasets: [
+              {
+                label: "Impressions",
+                data: [...Array(24).keys()].map(n => (Math.sin(n*6)*1000)+ 1100)
+              }
+            ]
+
+          }
+
+          var lineChart = new Chart(ctx,{
+            type: 'line',
+            data: data
+          });
+        </script>
       </div>
+      
       <div class="column is-one-third">
-        <center><h2 class="title is-2">Chart 3</h2></center>
+        <center><h2 class="title is-2">Polar Chart: Devices</h2></center>
         <div class="buffer"></div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <canvas id="polar-chart"></canvas>
+        <script type="text/javascript">
+          var ctx = document.getElementById("polar-chart");
+
+          var data = {
+            labels: [
+              "Mobile",
+              "Desktop",
+              "App"
+            ],
+            datasets: [
+              {
+                data: [300, 50, 100],
+                backgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+                ]
+              }]
+          };
+
+          var pieChart = new Chart(ctx,{
+            type: 'polarArea',
+            data: data
+          });
+        </script>
       </div>
     </section>
   </body>
