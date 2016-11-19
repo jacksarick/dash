@@ -7,15 +7,20 @@ print "server @ http://localhost:3000\n"
 
 def compose(filename, replacements = nil, render_md = false)
 	# Read the file
-	file = File.read(PAGE_ROOT + filename.strip)
+	begin
+		file = File.read(PAGE_ROOT + filename.strip)
 
-	# Load includes
-	file = file.gsub(/<<<([^>]+)>>>/) {|_| compose($1)}
-	
-	# Substitute replacements if dictionary included
-	file = replacements != nil ? file.gsub(/\{\{\{([^\}]+)\}\}\}/) {|_| replacements[$1.strip]} : file
+		# Load includes
+		file = file.gsub(/<<<([^>]+)>>>/) {|_| compose($1)}
+		
+		# Substitute replacements if dictionary included
+		file = replacements != nil ? file.gsub(/\{\{\{([^\}]+)\}\}\}/) {|_| replacements[$1.strip]} : file
 
-	return file
+		return file
+
+	rescue
+		return "Error 404: file not found"
+	end
 end
 
 def http_response(response)
