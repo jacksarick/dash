@@ -13,6 +13,8 @@
       <<< /js/colours.js >>>
       <<< /js/jackQuery.js >>>
 
+      sum = x => x.reduce((a, b) => a + b, 0)
+
       const sum_data = <<< /data/aggregate.json >>>;
 
       const country_names = ["North America", "Europe", "Asia"]
@@ -79,7 +81,7 @@
             datasets: [
               {
                 data: devices.map(x => 
-                  agg_data[0].filter(d => d["platform"] == x.toLowerCase()).length
+                  sum(agg_data[0].filter(d => d["platform"] == x.toLowerCase()).map(p => p.impressions))
                 ),
                 backgroundColor: [
                   colour.green,
@@ -99,7 +101,7 @@
 
     <script type="text/javascript">
       window.onload = function() {
-        percent = Math.floor((agg_data.map(f => f.length).reduce((a, b) => a + b, 0) / {{{ ideal-impressions }}}) * 100)
+        percent = Math.floor((sum(agg_data.map(f => f.impressions)) / {{{ ideal-impressions }}}) * 100)
 
         updateUserCount()
         optimalAd()
@@ -113,9 +115,11 @@
       $("#format-select").listen("change", updateUserCount);
 
       function updateUserCount() {
-        $("#user-count").html(agg_data[$("#country-select").value()].filter(dp =>
-          (dp.platform == $("#device-select").value()) &&
-          (dp.format == $("#format-select").value())).length)
+        $("#user-count").html(sum(agg_data[$("#country-select").value()]
+                  .filter(dp =>
+                    (dp.platform == $("#device-select").value()) &&
+                    (dp.format == $("#format-select").value()))
+                  .map(di => di.impressions)))
       }
 
       listify = (l) => Array.apply(null, $(l).$.options).map(f => f.value)
@@ -131,9 +135,11 @@
         for (var i = countries.length - 1; i >= 0; i--) {
           for (var k = devices.length - 1; k >= 0; k--) {
             for (var n = formats.length - 1; n >= 0; n--) {
-              count = agg_data[countries[i]].filter(dp =>
-                (dp.platform == devices[k]) &&
-                (dp.format == formats[n])).length
+              count = sum(agg_data[countries[i]]
+                  .filter(dp =>
+                    (dp.platform == devices[k]) &&
+                    (dp.format == formats[n]))
+                  .map(di => di.impressions))
               if (count > max) {
                 max = count
                 optimal = [countries[i], devices[k], formats[n]];
