@@ -73,30 +73,62 @@
 
         <select id="axis-one">
           <option value='["Mobile", "Desktop", "App"]'>Device</option>
-          <option value=1>Country</option>
-          <option value=2>Format</option>
+          <option value='["NA", "EU", "AS"]'>Country</option>
+          <option value='["Video", "Banner"]'>Format</option>
         </select>
 
         <b>VS.</b>
 
         <select id="axis-two">
           <option value='["Mobile", "Desktop", "App"]'>Device</option>
-          <option value=1>Country</option>
-          <option value=2>Format</option>
+          <option value='["NA", "EU", "AS"]'>Country</option>
+          <option value='["Video", "Banner"]'>Format</option>
         </select>
 
         <script type="text/javascript">
           var ctx = document.getElementById("bubble-chart");
 
-          const device_axis = ["Mobile", "Desktop", "App"];
+          // const device_axis = ["Mobile", "Desktop", "App"];
           const country_axis = ["NA", "EU", "AS"];
-          const format_axis = ["Video", "Banner"];
+          // const format_axis = ["Video", "Banner"];
 
           // devices.map(x => 
           //         sum(agg_data[0].filter(d => d["platform"] == x.toLowerCase()).map(p => p.impressions))
           //       )
 
-          data_set = [];
+          const axis_one = JSON.parse($("#axis-one").value())
+          const axis_two = JSON.parse($("#axis-two").value())
+
+          country_data = []
+          country_data = country_data.concat(agg_data[0].map(d => {
+            d["country"] = country_axis[0]
+            return d
+          }))
+
+          country_data = country_data.concat(agg_data[1].map(d => {
+            d["country"] = country_axis[1]
+            return d
+          }))
+
+          country_data = country_data.concat(agg_data[2].map(d => {
+            d["country"] = country_axis[2]
+            return d
+          }))
+
+          console.log("PING")
+          console.log(country_data);
+
+          data_set = []
+
+          // for (var i = axis_one.length - 1; i >= 0; i--) {
+          //   for (var n = axis_two.length - 1; n >= 0; n--) {
+          //     data_set.push({
+          //       x: i,
+          //       y: n,
+          //       r: country_data.filter(p => p[])
+          //     })
+          //   }
+          // }
 
           var data = {
 
