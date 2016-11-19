@@ -1,4 +1,52 @@
-<section class="section columns charts">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dash</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jack Sarick">
+    <style type="text/css">
+      <<< /css/bulma.min.css >>>
+      <<< /css/layout.css >>>
+    </style>
+    <script type="text/javascript">
+      <<< /js/charts.min.js >>>
+      <<< /js/colours.js >>>
+      <<< /js/jackQuery.js >>>
+
+      sum = x => x.reduce((a, b) => a + b, 0)
+
+      const sum_data = <<< /data/aggregate.json >>>;
+
+      const country_names = ["North America", "Europe", "Asia"]
+
+      // Doctor the data
+      agg_data = sum_data.map(arr =>
+        arr.data
+      )
+    </script>
+  </head>
+  <body>
+
+    <!-- Main Header -->
+    <section class="hero is-primary is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column one-quarter">
+              <img src="https://placehold.it/400x100?text=Playground+by+Rush" alt="">
+            </div>
+            <div class="column">
+            </div>
+            <div class="column is-1">
+             <a class="button is-info is-outlined is-large">Account</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rest of the page -->
+    <section class="section columns charts">
      <!-- Pie Chart -->
       <div class="column is-one-third">
         <center><h2 class="title is-2">Pie Chart: Country</h2></center>
@@ -92,3 +140,5 @@
         </script>
       </div>
     </section>
+  </body>
+</html>
