@@ -45,10 +45,11 @@
       }))
 
       function impression_count(axis1, axis2) {
-        return sum(country_data.filter(d => {
-                  contains(d, axis1) &&
-                  (contains(d, axis2) || axis2 == undefined)
-                }).map(p => p.impressions))
+        return (axis2 != undefined)? sum(country_data.filter(d =>
+                  contains(d, axis1) && contains(d, axis2)
+                ).map(p => p.impressions)) : sum(country_data.filter(d =>
+                  contains(d, axis1)
+                ).map(p => p.impressions))
       }
     </script>
   </head>
