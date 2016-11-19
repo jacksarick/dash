@@ -8,6 +8,9 @@
       <<< /css/bulma.min.css >>>
       <<< /css/layout.css >>>
     </style>
+    <script type="text/javascript">
+      <<< /js/charts.min.js >>>
+    </script>
   </head>
   <body>
 
@@ -34,7 +37,7 @@
       <!-- Main Jumbotron -->
       <div class="container">
         <div class="heading">
-          <h1 class="title">Progress Overview: <b>60%</b></h1>
+          <h1 class="title">Progress Overview: <b>{{{ complete-percent }}}%</b></h1>
           <div class="columns">
             <!-- Left bit -->
             <div class="column is-1"></div>
@@ -42,7 +45,7 @@
             <!-- Middle bit -->
             <div class="column">
               <div class="buffer"></div>
-              <progress class="progress is-success is-x-large battle" value="60" max="100">60%</progress>
+              <progress class="progress is-success is-x-large battle" value="{{{ complete-percent }}}" max="100">{{{ complete-percent }}}%</progress>
               <div class="buffer"></div>
               <center>
                 <h1 class="subtitle is-1">Great Job!</h1>
@@ -59,14 +62,40 @@
     <!-- Rest of the page -->
     <section class="section columns charts">
       <div class="column is-one-third">
-        <center><h2 class="title is-2">Chart 1</h2></center>
+        <center><h2 class="title is-2">Pie Chart</h2></center>
         <div class="buffer"></div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <canvas id="pie-chart"></canvas>
+        <script type="text/javascript">
+          var ctx = document.getElementById("pie-chart");
+
+          var data = {
+            labels: [
+              "Red",
+              "Blue",
+              "Yellow"
+            ],
+            datasets: [
+              {
+                data: [300, 50, 100],
+                backgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+                ]
+              }]
+          };
+
+          var pieChart = new Chart(ctx,{
+            type: 'pie',
+            data: data
+          });
+        </script>
+
       </div>
       <div class="column is-one-third">
         <center><h2 class="title is-2">Chart 2</h2></center>

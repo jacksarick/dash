@@ -39,8 +39,7 @@ loop do
 	if request[0] == "GET"
 		case request[1]
 		when "/"
-			socket.print http_response compose "/index.html"
-			
+			socket.print http_response compose "/index.html", {"complete-percent" => 75 }
 		else
 			socket.print http_response compose request[1]
 		end
