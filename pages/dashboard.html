@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        <<< /css/bulma.min.css >>>
+        <<< /css/layout.css >>>
+        <<< /css/style.css >>>
+    </style> 
+    <script type="text/javascript">
+        // Libraries
+        <<< /js/charts.min.js >>>
+        <<< /js/colours.js >>>
+        <<< /js/jackQuery.js >>>
+        <<< /js/progressbar.js >>>
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#displayDay").click(function(){
+                jQuery("#graph").attr('src','http://individual.utoronto.ca/woojoyce/img/graph-day.png' );
+                return false;
+            });
+
+            $("#displayWeek").click(function(){
+                jQuery("#graph").attr('src','http://individual.utoronto.ca/woojoyce/img/graph-month.png' );
+                return false;
+
+            });
+
+            $("#displayHour").click(function(){
+                jQuery("#graph").attr('src','http://individual.utoronto.ca/woojoyce/img/graph-hour.png' );
+                return false;
+
+            });
+        });
+    </script>
+    </head>
+
+    <body>
+
+    <div class="header">
+       
+        <a href="/"> <img class="logo" src="http://individual.utoronto.ca/woojoyce/img/logo.png" alt="Logo" height="60px"> </a>
+        <ul class="navigation">
+            <li><a href="#" class="flatbtn1"><img src="http://individual.utoronto.ca/woojoyce/img/about.png" alt="About" height="60px"></a></li>
+            <li><a href="#" class="flatbtn1"><img src="http://individual.utoronto.ca/woojoyce/img/leadership.png" alt="Leadership" height="60px"></a></li>
+            <li><a href="#" class="flatbtn1"><img src="http://individual.utoronto.ca/woojoyce/img/careers.png" alt="Careers" height="60px"> </a></li>
+            <li><a href="#" class="flatbtn1"><img src="http://individual.utoronto.ca/woojoyce/img/contact.png" alt="Contact" height="60px"></a></li>
+            <li><a href="/"><img src="http://individual.utoronto.ca/woojoyce/img/logout.png" alt="Logout" height="60px"></a></li>
+        </ul>
+    </div>
+
+    <div>
+        <img src="http://individual.utoronto.ca/woojoyce/img/explore.png" width="100%">
+    </div>
+
+    <div id="progressBar">
+    <h1> This month's progress </h1>
+
+        <div class="progress" id="progress"></div>
+        <script src="js/goalBar.js"></script>
+    </div>
+
+
+    <ul class="flex-container">
+        <li class="flex-item">
+            <div class= "floating-box">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script><scri></scri>
+
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script> 
+    var data = {
+        labels: [
+            "Mobile",
+            "Desktop",
+            "App"
+        ],
+        datasets: [{
+            data: [300, 200, 150],
+            backgroundColor: [
+                "#6699CC",
+                "#336699",
+                "#99CCFF"
+                //"#003366",
+                //"#003399"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
+    };
+
+    var ctx = document.getElementById("myChart");   
+    
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+        
+        options:{   
+           segmentShowStroke : false,
+           animateScale : true
+        }
+    });
+
+    </script>
+</div>
+        </li>
+        <li class="flex-item">
+            <img id="graph" src="http://individual.utoronto.ca/woojoyce/img/graph-month.png" width="100%"  height="90%">
+
+            <span id="graph-time-wrapper">
+                <a class="graph-time" href="" id="displayHour">hour | </a>
+                <a class="graph-time" href="" id="displayDay">day | </a>        
+                <a class="graph-time" href="" id="displayWeek">week</a>
+            </span>
+        </li>
+    </ul>
+\
+
+</body>
+</html>
+  </body>
+</html>

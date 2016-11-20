@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dash</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jack Sarick">
+    <style type="text/css">
+      <<< /css/bulma.min.css >>>
+      <<< /css/layout.css >>>
+    </style>
+
+    <script type="text/javascript">
+      // Libraries
+      <<< /js/charts.min.js >>>
+      <<< /js/colours.js >>>
+      <<< /js/jackQuery.js >>>
+      <<< /js/progressbar.js >>>
+
+      // Sum function
+      sum = x => x.reduce((a, b) => a + b, 0)
+
+      // Imports data
+      <<< /js/import-data.js >>>
+
+      // The impression counting function
+      function impression_count(axis1, axis2) {
+        return (axis1 == undefined)? sum(country_data.map(p => p.impressions)) : (axis2 != undefined)? sum(country_data.filter(d =>
+                  contains(d, axis1) && contains(d, axis2)
+                ).map(p => p.impressions)) : sum(country_data.filter(d =>
+                  contains(d, axis1)
+                ).map(p => p.impressions))
+      }
+    </script>
+  </head>
+  <body>
+
+    <!-- Main Header -->
+    <section class="hero is-primary is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column one-quarter">
+              <img src="https://placehold.it/400x100?text=Playground+by+Rush" alt="">
+            </div>
+            <div class="column">
+            </div>
+            <div class="column is-1">
+             <a class="button is-info is-outlined is-large">Log out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rest of the page -->
+    <section class="section columns charts">
+      <!-- Info -->
+      <div class="column is-one-half">
+        <center><h1 class="title is-1">Explore Our Data</h1></center>
+        <div class="buffer"></div>
+        <h2 class="title is-2">
+          <b id="user-count">XXX</b> people from <<< /options/country.html >>> saw a <<< /options/format.html >>> ad on a <<< /options/device.html >>>
+        </h2>
+
+        <h2 class="title is-2">
+          Our data shows the most effective vector was <b id="device-auto">XXX</b> <b id="format-auto">XXX</b> ads in <b id="country-auto">XXX</b>, as it was seen by <b id="user-count-auto">XXX</b> people
+        </h2>
+
+        <div class="buffer"></div>
+
+        <h3 class="title is-3">
+          Let us help you launch the most effective ad campaign you possibly can. You'll save money, reach a more valuable audience, and we'll always break it down to plain english for you.
+        </h3>
+
+      </div>
+      
+      <!-- Main Graph -->
+      <div class="column is-one-half">
+        <div class="buffer"></div>
+        <canvas id="bubble-chart"></canvas>
+
+        <select id="axis-one">
+          <option value='["mobile", "desktop", "app"]'>Device</option>
+          <option value='["NA", "EU", "AS"]'>Country</option>
+          <option value='["video", "banner"]'>Format</option>
+        </select>
+
+        <b>VS.</b>
+
+        <select id="axis-two">
+          <option value='["mobile", "desktop", "app"]'>Device</option>
+          <option value='["NA", "EU", "AS"]'>Country</option>
+          <option value='["video", "banner"]'>Format</option>
+        </select>
+
+        <script type="text/javascript">
+          // Runs bubble-chart
+          <<< /js/bubble-chart.js >>>
+        </script>
+      </div>
+    </section>
+
+    <script type="text/javascript">
+      window.onload = function() {
+        // Code will run on window load
+        <<< /js/on-window-load.js >>>
+      }
+    </script>
+  </body>
+</html>

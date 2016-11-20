@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dash</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+      <<< /css/bulma.min.css >>>
+      <<< /css/layout.css >>>
+    </style> 
+ 
+    <style>
+		.floating-box {
+		    display: inline-block;
+		    width: 300px;
+		    height: 150px;
+		    margin: 10px;
+		    border: 10px ;
+		}
+	</style>
+
+    <script type="text/javascript">
+      // Libraries
+      <<< /js/charts.min.js >>>
+      <<< /js/colours.js >>>
+      <<< /js/jackQuery.js >>>
+      <<< /js/progressbar.js >>>
+   
+    </script>
+  </head>
+  
+  <body>
+  	<div class= "floating-box">
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script><scri></scri>
+
+	<canvas id="myChart" width="400" height="400"></canvas>
+	<script> 
+	var data = {
+	    labels: [
+	        "Mobile",
+	        "Desktop",
+	        "App"
+	    ],
+	    datasets: [{
+	        data: [300, 200, 150],
+	        backgroundColor: [
+	            "#6699CC",
+		        "#336699",
+		        "#99CCFF"
+		        //"#003366",
+		        //"#003399"
+	        ],
+	        hoverBackgroundColor: [
+	            "#FF6384",
+	            "#36A2EB",
+	            "#FFCE56"
+	        ]
+	    }]
+	};
+
+	var ctx = document.getElementById("myChart");	
+	
+	var myDoughnutChart = new Chart(ctx, {
+	    type: 'doughnut',
+	    data: data,
+	    
+	    options:{	
+	       segmentShowStroke : false,
+		   animateScale : true
+	    }
+	});
+
+	</script>
+	</div>
+
+	<div class= "floating-box">
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script><scri></scri>
+	<canvas id="myChart2" width="400" height="400"></canvas>
+
+	<script> 
+	var data = {
+	    labels: [
+	        "North America",
+	        "Europe",
+	        "Asia"
+	    ],
+	    datasets: [{
+	        data: [300, 200, 150],
+	        backgroundColor: [
+	            "#6699CC",
+		        "#336699",
+		        "#99CCFF"
+		        //"#003366",
+		        //"#003399"
+	        ],
+	        hoverBackgroundColor: [
+	            "#FF6384",
+	            "#36A2EB",
+	            "#FFCE56"
+	        ]
+	    }]
+	};
+
+	var ctx = document.getElementById("myChart2");	
+	
+	var myDoughnutChart = new Chart(ctx, {
+	    type: 'doughnut',
+	    data: data,
+	    
+	    options:{
+	        	
+	    }
+	});
+
+	</script>
+	</div>
+
+	<div class= "floating-box">
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script><scri></scri>
+	<canvas id="myChart3" width="400" height="400"></canvas>
+
+		<script> 
+	var data = {
+	    labels: [
+	        "Video",
+	        "Banner"
+	    ],
+	    datasets: [{
+	        data: [300, 200],
+	        backgroundColor: [
+	            "#6699CC",
+		        "#336699"
+		        //"#99CCFF"
+		        //"#003366",
+		        //"#003399"
+	        ],
+	        hoverBackgroundColor: [
+	            "#FF6384",
+	            "#36A2EB"
+	            //"#FFCE56"
+	        ]
+	    }]
+	};
+
+	var ctx = document.getElementById("myChart3");	
+	
+	var myDoughnutChart = new Chart(ctx, {
+	    type: 'doughnut',
+	    data: data,
+	    
+	    options:{
+	       
+	    }
+	});
+
+	</script>
+	</div>
+  </body>
