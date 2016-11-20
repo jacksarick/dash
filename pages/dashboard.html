@@ -55,6 +55,11 @@
 
             $("#top-page").click(function(){
                 $.getScript("http://individual.utoronto.ca/woojoyce/goalBar.js");
+
+                $('html,body').animate({
+                    scrollTop: $("#center-page").offset().top},
+                    'slow');
+
                 return false; 
             }); 
 
@@ -62,6 +67,11 @@
                 $.getScript("http://individual.utoronto.ca/woojoyce/donut-graph-location.js");
                 $.getScript("http://individual.utoronto.ca/woojoyce/donut-graph-type.js");
                 $.getScript("http://individual.utoronto.ca/woojoyce/donut-graph-mobile.js");
+
+                $('html,body').animate({
+                    scrollTop: $(".donut-graphs").offset().top},
+                    'slow');
+
                 return false;
             });
         });
@@ -86,15 +96,15 @@
     </div>
 
     <div>
-        <a href="#first-page" id="top-page">
+        <a id="top-page">
             <img src="http://individual.utoronto.ca/woojoyce/img/explore.png" width="100%">
         </a>  
     </div>
 
     
     <div id="center-page">
-    <div id="progressBar">
-    <a href="#lower-page" class="next"><h1 id="first-page"> This month's progress </h1></a>
+        <div id="progressBar">
+        <h1> This month's progress </h1>
 
         <div class="progress" id="progress"></div>
         <script src="js/goalBar.js"></script> 
@@ -121,7 +131,7 @@
 
     <div  class="donut-graphs">
         <div class= "donut-mobile">
-            <h1 id="lower-page">Views per device</h1>
+            <h1>Views per device</h1>
             <canvas id="myChart" width="400" height="400"></canvas>
             <script src="js/donut-graph-mobile.js"></script>
         </div>
