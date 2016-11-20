@@ -1,4 +1,5 @@
-
+        document.getElementById("progress").innerHTML = ""; 
+        
         var target=0;
         var bar = new ProgressBar.Line('#progress', {
             color: '#336699',

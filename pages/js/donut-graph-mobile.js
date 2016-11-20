@@ -1,5 +1,6 @@
+    document.getElementById("myChart").innerHTML = ""; 
 
-var impressions = [300,200,150];
+	var impressions = [300,200,150];
 	var sum = impressions[0] + impressions[1] + impressions[2];
 	var percentages = [Math.round(((impressions[0]/sum)*100)),Math.round(((impressions[1]/sum)*100)),Math.round(((impressions[2]/sum)*100))];
 

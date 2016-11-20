@@ -50,11 +50,20 @@
                 return false;
 
             });
+
+            $("#first-page").click(function(){
+                $.getScript("http://individual.utoronto.ca/woojoyce/goalBar.js");
+                return false; 
+            }); 
+
+            $("#center-page").click(function(){
+                $.getScript("http://individual.utoronto.ca/woojoyce/donut-graph-location.js");
+                $.getScript("http://individual.utoronto.ca/woojoyce/donut-graph-type.js");
+                $.getScript("http://individual.utoronto.ca/woojoyce/donut-graph-mobile.js");
+                return false;
+            });
         });
 
-        $(".next").click(function() {
-            $('html,body').animate({ scrollTop:$(this).parent().next().offset().top}, 'slow');
-        });
     </script>
 
     </head>
@@ -74,7 +83,9 @@
     </div>
 
     <div>
-        <a href="#" class="next"><img src="http://individual.utoronto.ca/woojoyce/img/explore.png" width="100%"></a>>   
+        <a href="" id="first-page">
+            <img src="http://individual.utoronto.ca/woojoyce/img/explore.png" width="100%">
+        </a>  
     </div>
 
     <div id="center-page">
@@ -82,7 +93,7 @@
     <h1> This month's progress </h1>
 
         <div class="progress" id="progress"></div>
-        <script src="js/goalBar.js"></script>
+        <script src="js/goalBar.js"></script> 
     </div>
 
 
