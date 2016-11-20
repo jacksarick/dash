@@ -14,10 +14,12 @@
         <<< /js/colours.js >>>
         <<< /js/jackQuery.js >>>
         <<< /js/progressbar.js >>>
+
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
+
             $("#displayDay").click(function(){
                 jQuery("#graph").attr('src','http://individual.utoronto.ca/woojoyce/img/graph-day.png' );
                 return false;
@@ -35,7 +37,12 @@
 
             });
         });
+
+        $(".next").click(function() {
+            $('html,body').animate({ scrollTop:$(this).parent().next().offset().top}, 'slow');
+        });
     </script>
+
     </head>
 
     <body>
@@ -53,9 +60,10 @@
     </div>
 
     <div>
-        <img src="http://individual.utoronto.ca/woojoyce/img/explore.png" width="100%">
+        <a href="#" class="next"><img src="http://individual.utoronto.ca/woojoyce/img/explore.png" width="100%"></a>>   
     </div>
 
+    <div id="center-page">
     <div id="progressBar">
     <h1> This month's progress </h1>
 
@@ -80,19 +88,24 @@
         </li>
     </ul>
 
-    <div class= "floating-box">
-        <canvas id="myChart" width="400" height="400"></canvas>
-        <script src="js/donut-graph-mobile.js"></script>
     </div>
 
-    <div class= "floating-box">
-        <canvas id="myChart2" width="400" height="400"></canvas>
-        <script src="js/donut-graph-location.js"></script>
-    </div>    
+    <div class="donut-graphs">
+        <div class= "donut-mobile">
+            <h1>Views per device</h1>
+            <canvas id="myChart" width="400" height="400"></canvas>
+            <script src="js/donut-graph-mobile.js"></script>
+        </div>
 
-    <div class= "floating-box">
-        <canvas id="myChart3" width="400" height="400"></canvas>
-        <script src="js/donut-graph-type.js"></script>
+        <div class= "donut-location-type">
+            <h1>Views per location</h1>
+            <canvas id="myChart2" width="400" height="400"></canvas>
+            <script src="js/donut-graph-location.js"></script>
+
+            <h1>Views per ad type</h1>
+            <canvas id="myChart3" width="400" height="400"></canvas>
+            <script src="js/donut-graph-type.js"></script>
+        </div>
     </div>    
 </body>
 </html>

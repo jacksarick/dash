@@ -145,13 +145,32 @@ a:visited {
 
 .center { display: block; text-align: center; }
 
+#center-page {
+  padding-bottom: 10%;
+  background-color: #FFEEDD;
+}
 
-.floating-box {
-  display: inline-block;
-  width: 300px;
-  height: 150px;
-  margin: 10px;
-  border: 10px ;
+.donut-graphs {
+  width: auto;
+  margin: 10%;
+  min-width: 800px;
+  text-align: center;
+}
+
+.donut-graphs h1 {
+  font-size: 1.5em;
+}
+
+.donut-mobile {
+  float: left;
+  margin: 100px 0;
+  width: 45%;
+}
+
+.donut-location-type {
+  float: right;
+  width: 28%;
+  margin: 0 50px;
 }
 
 .flatbtn1:hover {
