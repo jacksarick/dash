@@ -32,7 +32,7 @@
     </script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    
+
     <script>
         $(document).ready(function(){
 
@@ -120,17 +120,24 @@
             <img id="graph" src="http://individual.utoronto.ca/woojoyce/img/graph-month.png" width="100%"  height="90%">
 
             <span id="graph-time-wrapper">
-                <a class="graph-time" href="" id="displayHour">hour | </a>
-                <a class="graph-time" href="" id="displayDay">day | </a>        
+                <a class="graph-time" href="" id="displayHour">hour</a> | 
+                <a class="graph-time" href="" id="displayDay">day</a> | 
                 <a class="graph-time" href="" id="displayWeek">week</a>
             </span>
         </li>
     </ul>
 
+    <div id="detailed-stats">
+        <span id="stats">Detailed statistics:</span>
+        <span id="pages"><a>Views</a> | <a>Clicks</a> | <a>Cost per ad</a></san>
+    </div>
+
     </div> </a>
 
     <div  class="donut-graphs">
+        <h1 class="bottom-page-title">Detailed statistics | Views</h1>
         <div class= "donut-mobile">
+
             <h1>Views per device</h1>
             <canvas id="myChart" width="400" height="400"></canvas>
             <script src="js/donut-graph-mobile.js"></script>

@@ -68,16 +68,23 @@ body {
 
 .graph-time{
   text-decoration: none;
+  color: #AAA;
+}
 
+a:hover {
+  font-weight: bold;
+  color: #4477AA;
+}}
+
+#graph-time :hover {
+  font-weight: bold;
 }
 
 #graph-time-wrapper{
   padding-left: 70px;
+  color: #AAA;
 }
 
-a:visited {
-  color: #CCC;
-}
 .header {
   height: 60px;
   background: #336699;
@@ -145,11 +152,33 @@ a:visited {
   color: white;
 }
 
+#detailed-stats {
+  text-align: center;
+  color: #AAA;
+  min-width: 300px;
+  margin-top: 20px;
+}
+
+#stats {
+  font-weight: bold;
+  margin: 0 20px 0 0;
+}
+
+#pages :hover {
+  font-weight: bold;
+  color: #4477AA;
+}
+
 .center { display: block; text-align: center; }
 
 #center-page {
   padding-bottom: 10%;
   background-color: #FFEEDD;
+}
+
+.bottom-page-title {
+  margin-bottom: 0;
+  text-decoration: underline;
 }
 
 .donut-graphs {
