@@ -30,6 +30,7 @@
                 ).map(p => p.impressions))
       }
     </script>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script>
@@ -50,6 +51,18 @@
                 jQuery("#graph").attr('src','http://individual.utoronto.ca/woojoyce/img/graph-hour.png' );
                 return false;
 
+            });
+
+            $("#top-page").click(function(){
+                $.getScript("http://individual.utoronto.ca/woojoyce/goalBar.js");
+                return false; 
+            }); 
+
+            $("#center-page").click(function(){
+                $.getScript("http://individual.utoronto.ca/woojoyce/donut-graph-location.js");
+                $.getScript("http://individual.utoronto.ca/woojoyce/donut-graph-type.js");
+                $.getScript("http://individual.utoronto.ca/woojoyce/donut-graph-mobile.js");
+                return false;
             });
         });
 
@@ -73,7 +86,9 @@
     </div>
 
     <div>
-        <a href="#first-page" class="next"><img src="http://individual.utoronto.ca/woojoyce/img/explore.png" width="100%"></a>>   
+        <a href="#first-page" id="top-page">
+            <img src="http://individual.utoronto.ca/woojoyce/img/explore.png" width="100%">
+        </a>  
     </div>
 
     
@@ -82,8 +97,8 @@
     <a href="#lower-page" class="next"><h1 id="first-page"> This month's progress </h1></a>
 
         <div class="progress" id="progress"></div>
-        <script src="js/goalBar.js"></script>
-    </div> 
+        <script src="js/goalBar.js"></script> 
+    </div>
 
 
     <ul class="flex-container">

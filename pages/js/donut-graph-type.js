@@ -1,3 +1,6 @@
+    document.getElementById("myChart3").innerHTML = ""; 
+
+	
 	var impressions = [300,200];
 	var sum = impressions[0] + impressions[1] ;
 	var percentages = [Math.round(((impressions[0]/sum)*100)),Math.round(((impressions[1]/sum)*100))];
