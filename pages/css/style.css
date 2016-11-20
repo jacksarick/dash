@@ -9,6 +9,7 @@ src: url("../fonts/Slim Joe.otf") format("opentype");
 }
 
 body {
+  font-family: "BigJohn", sans-serif;
   background-color: #FFF;
   margin: 0;
   min-width: 500px;
@@ -160,6 +161,11 @@ a:visited {
 
 .donut-graphs h1 {
   font-size: 1.5em;
+  margin-bottom: 0;
+}
+
+#myChart2 {
+  margin-bottom: 40px;
 }
 
 .donut-mobile {
