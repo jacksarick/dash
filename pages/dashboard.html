@@ -66,48 +66,8 @@
 
     <ul class="flex-container">
         <li class="flex-item">
-            <div class= "floating-box">
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script><scri></scri>
 
-    <canvas id="myChart" width="400" height="400"></canvas>
-    <script> 
-    var data = {
-        labels: [
-            "Mobile",
-            "Desktop",
-            "App"
-        ],
-        datasets: [{
-            data: [300, 200, 150],
-            backgroundColor: [
-                "#6699CC",
-                "#336699",
-                "#99CCFF"
-                //"#003366",
-                //"#003399"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ]
-        }]
-    };
-
-    var ctx = document.getElementById("myChart");   
-    
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: data,
-        
-        options:{   
-           segmentShowStroke : false,
-           animateScale : true
-        }
-    });
-
-    </script>
-</div>
+            <img id="bar-graph" src="http://individual.utoronto.ca/woojoyce/img/bar-graph-cost.png" width="100%"  height="90%">
         </li>
         <li class="flex-item">
             <img id="graph" src="http://individual.utoronto.ca/woojoyce/img/graph-month.png" width="100%"  height="90%">
@@ -119,8 +79,21 @@
             </span>
         </li>
     </ul>
-\
 
+    <div class= "floating-box">
+        <canvas id="myChart" width="400" height="400"></canvas>
+        <script src="js/donut-graph-mobile.js"></script>
+    </div>
+
+    <div class= "floating-box">
+        <canvas id="myChart2" width="400" height="400"></canvas>
+        <script src="js/donut-graph-location.js"></script>
+    </div>    
+
+    <div class= "floating-box">
+        <canvas id="myChart3" width="400" height="400"></canvas>
+        <script src="js/donut-graph-type.js"></script>
+    </div>    
 </body>
 </html>
   </body>

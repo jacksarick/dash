@@ -16,7 +16,7 @@
             step: function (state, bar) {
                 bar.setText((bar.value() * 100).toFixed(0) + '%');
                 target = bar.value();
-                if ((target * 100).toFixed(0) == 60) {
+                if ((target * 100).toFixed(0) == 75) {
                     bar.stop();
                 }
             }
