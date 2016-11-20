@@ -31,6 +31,7 @@
       }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <script>
         $(document).ready(function(){
 
@@ -52,11 +53,9 @@
             });
         });
 
-        $(".next").click(function() {
-            $('html,body').animate({ scrollTop:$(this).parent().next().offset().top}, 'slow');
-        });
     </script>
 
+    <script src= "http://www.kryogenix.org/code/browser/smoothscroll/smoothscroll.js"></script>
     </head>
 
     <body>
@@ -74,16 +73,17 @@
     </div>
 
     <div>
-        <a href="#" class="next"><img src="http://individual.utoronto.ca/woojoyce/img/explore.png" width="100%"></a>>   
+        <a href="#first-page" class="next"><img src="http://individual.utoronto.ca/woojoyce/img/explore.png" width="100%"></a>>   
     </div>
 
+    
     <div id="center-page">
     <div id="progressBar">
-    <h1> This month's progress </h1>
+    <a href="#lower-page" class="next"><h1 id="first-page"> This month's progress </h1></a>
 
         <div class="progress" id="progress"></div>
         <script src="js/goalBar.js"></script>
-    </div>
+    </div> 
 
 
     <ul class="flex-container">
@@ -102,11 +102,11 @@
         </li>
     </ul>
 
-    </div>
+    </div> </a>
 
-    <div class="donut-graphs">
+    <div  class="donut-graphs">
         <div class= "donut-mobile">
-            <h1>Views per device</h1>
+            <h1 id="lower-page">Views per device</h1>
             <canvas id="myChart" width="400" height="400"></canvas>
             <script src="js/donut-graph-mobile.js"></script>
         </div>
