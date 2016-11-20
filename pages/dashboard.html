@@ -15,6 +15,20 @@
         <<< /js/jackQuery.js >>>
         <<< /js/progressbar.js >>>
 
+      // Sum function
+      sum = x => x.reduce((a, b) => a + b, 0)
+
+      // Imports data
+      <<< /js/import-data.js >>>
+
+      // The impression counting function
+      function impression_count(axis1, axis2) {
+        return (axis1 == undefined)? sum(country_data.map(p => p.impressions)) : (axis2 != undefined)? sum(country_data.filter(d =>
+                  contains(d, axis1) && contains(d, axis2)
+                ).map(p => p.impressions)) : sum(country_data.filter(d =>
+                  contains(d, axis1)
+                ).map(p => p.impressions))
+      }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
